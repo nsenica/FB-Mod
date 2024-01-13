@@ -210,7 +210,7 @@ tvdb_updates.values().each{ update ->
 				def year = seriesInfo.startDate?.year ?: 0
 
 				if (imdbid) tryLogCatch {
-					def omdbInfo = OMDb.getMovieInfo(new Movie(imdbid.match(/tt(\d+)/) as int))
+					def omdbInfo = OMDb.getMovieInfo(new net.filebot.web.Movie(imdbid.match(/tt(\d+)/) as int))
 
 					seriesNames += omdbInfo.name
 					seriesNames += omdbInfo.originalName
@@ -351,7 +351,7 @@ pack(osdb_out, osdb*.join('\t'))
 // ------------------------------ BUILD ANIDB INDEX ------------------------------ //
 
 
-def anidb = new AnidbClient('filebot', 6).getAnimeTitles() as List
+def anidb = new net.filebot.web.AnidbClient('filebot', 6).getAnimeTitles() as List
 def animeExcludes = [] as Set
 
 // exclude anime movies from anime index
